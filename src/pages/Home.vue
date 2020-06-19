@@ -41,7 +41,7 @@
     },
     methods: {
       loadArticle () {
-        this.axios.get('/api/article')
+        this.axios.get('api/article')
           .then(response => {
             this.article = response
           })
