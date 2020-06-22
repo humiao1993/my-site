@@ -25,7 +25,7 @@
         </a-form-item>
         <a-form-item>
           <a-button type="primary" html-type="submit" :disabled="hasErrors(loginForm.getFieldsError())">
-            Log in
+            登录
           </a-button>
         </a-form-item>
       </a-form>
@@ -47,8 +47,20 @@
       inputLoginInfo () {
         this.logging = true
       },
-      submitLogin () {
-        console.log(123)
+      submitLogin (e) {
+        e.preventDefault()
+        const _this = this
+        this.loginForm.validateFieldsAndScroll((err, values)=>{
+          if (!err) {
+            const DATA = {...values}
+            console.log(DATA)
+            _this.axios.post('/pai/account/login',DATA).then(function (response) {
+              _this.$store.commit('setToken', response.token)
+              _this.$store.commit('setAccount', response.account)
+            })
+          }
+        })
+
       },
       hasErrors (fieldsError) {
         return Object.keys(fieldsError).some(field => fieldsError[field])
