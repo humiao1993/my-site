@@ -10,7 +10,7 @@ let path = [
   {
     path: '/',
     name: WELCOME.name,
-    component: WELCOME
+    component: WELCOME,
   },
   {
     path: '/home',
