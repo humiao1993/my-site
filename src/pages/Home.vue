@@ -49,6 +49,7 @@
     },
     beforeMount () {
       this.loadArticle()
+      console.log(this.$store.state.account)
     }
   }
 </script>
