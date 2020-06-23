@@ -8,7 +8,7 @@
       <a-form :form="loginForm" @submit="submitLogin" v-if="logging" layout="inline">
         <a-form-item>
           <a-input
-            v-decorator="['username',{ rules: [{ required: true, message: 'Please input your username!' }]},]"
+            v-decorator="['identity',{ rules: [{ required: true, message: 'Please input your username!' }]},]"
             placeholder="username"
           >
             <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)"/>
@@ -25,7 +25,7 @@
         </a-form-item>
         <a-form-item>
           <a-button type="primary" html-type="submit" :disabled="hasErrors(loginForm.getFieldsError())">
-            登录
+            Log in
           </a-button>
         </a-form-item>
       </a-form>
@@ -36,7 +36,7 @@
 <script>
 
   export default {
-    name: 'HelloWorld',
+    name: 'Welcome',
     data () {
       return {
         loginForm: this.$form.createForm(this, {name: 'loginForm'}),
@@ -50,10 +50,11 @@
       submitLogin (e) {
         e.preventDefault()
         const _this = this
-        this.loginForm.validateFieldsAndScroll((err, values)=>{
+        this.loginForm.validateFieldsAndScroll((err, values) => {
           if (!err) {
             const DATA = {...values}
-            _this.axios.post('/pai/account/login',DATA).then(function (response) {
+            console.log(DATA)
+            _this.axios.post('/api/account/login', DATA).then(function (response) {
               _this.$store.commit('setToken', response.token)
               _this.$store.commit('setAccount', response.account)
               _this.$router.replace('/home')

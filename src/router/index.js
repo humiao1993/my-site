@@ -15,7 +15,8 @@ let path = [
   {
     path: '/home',
     name: HOME.name,
-    component: HOME
+    component: HOME,
+    meta: {auth:true}
   }
 ]
 

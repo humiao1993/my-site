@@ -35,7 +35,7 @@ const store = new Vuex.Store({
           reject()
           return
         }
-        axios.get('/api/account/0?expand=menu').then(function (response) {
+        axios.get('/api/account/0').then(function (response) {
           commit('setAccount', response)
           resolve()
         }).catch(function () {
