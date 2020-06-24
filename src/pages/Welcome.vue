@@ -53,7 +53,6 @@
         this.loginForm.validateFieldsAndScroll((err, values) => {
           if (!err) {
             const DATA = {...values}
-            console.log(DATA)
             _this.axios.post('/api/account/login', DATA).then(function (response) {
               _this.$store.commit('setToken', response.token)
               _this.$store.commit('setAccount', response.account)
